@@ -26,9 +26,11 @@ class App {
   constructor(dbCon?: IDbRepository) {
     this.logger = log4js.getLogger('app');
     this.logger.info('Start App Configuration...');
+
     if (dbCon) {
       this.dbConnection = dbCon;
     }
+    
     this.expressApp = express();
 
     this.routes();

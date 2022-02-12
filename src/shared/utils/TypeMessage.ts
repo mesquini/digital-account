@@ -1,6 +1,6 @@
-import { ErrorReport } from 'joi';
+import { ErrorReport, ValidationError } from 'joi';
 
-const TypeMessage = (err: ErrorReport[], field: string): string => {
+const message = (err: ErrorReport[], field: string): string => {
   const { code } = err[0];
 
   switch (code) {
@@ -16,5 +16,8 @@ const TypeMessage = (err: ErrorReport[], field: string): string => {
       return `An error occurred in the ${field} field`;
   }
 };
+
+const TypeMessage = (err: ErrorReport[], field: string) =>
+  new ValidationError(message(err, field), err, err);
 
 export default TypeMessage;

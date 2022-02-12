@@ -2,12 +2,12 @@ import 'dotenv/config';
 import { Router } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDoc from '@shared/swagger.json';
-// import proposalRouters from '@modules/proposal/infra/http/routes/proposal.routes';
+import digitalAccountRouters from '@modules/digital-account/infra/http/routes/digitalAccount.routes';
 
 const mainRoute = Router();
 
 mainRoute.get('/', (_, res) => {
-  return res.status(200).json({ message: 'API - ONLINE' });
+  return res.status(200).json({ message: 'API - Digital Account' });
 });
 
 mainRoute.use(
@@ -18,6 +18,6 @@ mainRoute.use(
   }),
 );
 
-// mainRoute.use('/proposal', proposalRouters);
+mainRoute.use('/digital-account', digitalAccountRouters);
 
 export default mainRoute;

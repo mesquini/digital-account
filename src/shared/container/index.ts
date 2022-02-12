@@ -1,9 +1,9 @@
-// import { container } from 'tsyringe';
+import { container } from 'tsyringe';
 
-// import ProposalRepository from '@modules/proposal/infra/typeorm/repositories/ProposalRepository';
-// import IProposalRepository from '@modules/proposal/repositories/IProposalRepository';
+import DigitalAccountRepository from '@modules/digital-account/infra/db/repositories/DigitalAccountRepository';
+import IDigitalAccountRepository from '@modules/digital-account/repositories/IDigitalAccountRepository';
 
-// container.registerSingleton<IProposalRepository>(
-//   'ProposalRepository',
-//   ProposalRepository,
-// );
+container.registerSingleton<IDigitalAccountRepository>(
+  'DigitalAccountRepository',
+  DigitalAccountRepository,
+);
