@@ -1,6 +1,5 @@
-import ICreateDigitalAccountDTO from "../dtos/ICreateDigitalAccountDTO";
-import ITransferValueDTO from "../dtos/ITransferValueDTO";
-import DigitalAccount from "../infra/db/entities/DigitalAccount";
+import ICreateDigitalAccountDTO from '../dtos/ICreateDigitalAccountDTO';
+import DigitalAccount from '../infra/db/entities/DigitalAccount';
 
 export default interface IDigitalAccountRepository {
   createAccount(data: ICreateDigitalAccountDTO): Promise<DigitalAccount>;

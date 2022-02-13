@@ -6,7 +6,9 @@ import DigitalAccountController from '../controllers/DigitalAccountController';
 
 const digitalAccountRouters = Router();
 
-digitalAccountRouters.post('/',celebrate({
+digitalAccountRouters.post(
+  '/',
+  celebrate({
     [Segments.BODY]: {
       name: Joi.string()
         .required()
@@ -18,6 +20,8 @@ digitalAccountRouters.post('/',celebrate({
         .required()
         .error(err => TypeMessage(err, 'availableValue')),
     },
-  }), DigitalAccountController.create);
+  }),
+  DigitalAccountController.create,
+);
 
 export default digitalAccountRouters;

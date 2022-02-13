@@ -30,7 +30,7 @@ class App {
     if (dbCon) {
       this.dbConnection = dbCon;
     }
-    
+
     this.expressApp = express();
 
     this.routes();

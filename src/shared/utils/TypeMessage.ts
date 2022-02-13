@@ -1,4 +1,4 @@
-import { ErrorReport, ValidationError } from 'joi';
+import Joi, { ErrorReport, ValidationError } from 'joi';
 
 const message = (err: ErrorReport[], field: string): string => {
   const { code } = err[0];
@@ -17,7 +17,7 @@ const message = (err: ErrorReport[], field: string): string => {
   }
 };
 
-const TypeMessage = (err: ErrorReport[], field: string) =>
+const TypeMessage = (err: ErrorReport[], field: string): Joi.ValidationError =>
   new ValidationError(message(err, field), err, err);
 
 export default TypeMessage;

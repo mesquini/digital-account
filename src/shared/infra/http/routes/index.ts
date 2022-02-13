@@ -3,6 +3,7 @@ import { Router } from 'express';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDoc from '@shared/swagger.json';
 import digitalAccountRouters from '@modules/digital-account/infra/http/routes/digitalAccount.routes';
+import transferRouters from '@modules/digital-account/infra/http/routes/transfer.routes';
 
 const mainRoute = Router();
 
@@ -19,5 +20,6 @@ mainRoute.use(
 );
 
 mainRoute.use('/digital-account', digitalAccountRouters);
+mainRoute.use('/transfer', transferRouters);
 
 export default mainRoute;
