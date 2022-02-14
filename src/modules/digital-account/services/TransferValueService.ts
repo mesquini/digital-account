@@ -36,6 +36,7 @@ export default class TransferValueService {
     if (!receiverDigitalAccount)
       throw new AppError(
         `There is no digital account with this document: ${receiverCpfFormated}`,
+        404,
       );
 
     const senderCpfFormated = cpf.format(data.senderDocument);
@@ -47,6 +48,7 @@ export default class TransferValueService {
     if (!senderDigitalAccount)
       throw new AppError(
         `There is no digital account with this document: ${senderCpfFormated}`,
+        404,
       );
 
     if (senderDigitalAccount.availableValue < data.transferredValue)

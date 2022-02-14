@@ -28,6 +28,7 @@ export default class HistoryTransferService {
     if (!digitalAccount)
       throw new AppError(
         `Account not initialized with document ${cpfFormated}`,
+        404,
       );
 
     const transfers = await this.transferRepository.getByDocument(cpfFormated);

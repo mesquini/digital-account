@@ -1,15 +1,321 @@
 {
   "openapi": "3.0.0",
   "info": {
-    "title": "Template API",
+    "title": "Digital Account API",
     "version": "1.0.0",
-    "description": "Template API",
-    "contact": {}
+    "description": "",
+    "contact": {
+      "name": "Victor Mesquini"
+    }
   },
   "servers": [
     {
       "url": "http://localhost:3333",
       "description": "dev"
+    }
+  ],
+  "components": {
+    "schemas": {
+      "DigitalAccount": {
+        "description": "",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "name": {
+            "type": "string",
+            "minLength": 1
+          },
+          "document": {
+            "type": "string",
+            "minLength": 1
+          },
+          "availableValue": {
+            "type": "number"
+          }
+        },
+        "required": [
+          "id",
+          "name",
+          "document",
+          "availableValue"
+        ],
+        "x-examples": {
+          "example-1": {
+            "id": "1644758480524",
+            "name": "Joana Bárbara Caldeira 2",
+            "document": "452.475.668-07",
+            "availableValue": 1000
+          }
+        }
+      },
+      "Transfer": {
+        "description": "",
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1
+          },
+          "receiverDocument": {
+            "type": "string",
+            "minLength": 1
+          },
+          "senderDocument": {
+            "type": "string",
+            "minLength": 1
+          },
+          "availableValue": {
+            "type": "number"
+          },
+          "transferredValue": {
+            "type": "number"
+          },
+          "dateTime": {
+            "type": "string",
+            "minLength": 1
+          }
+        },
+        "required": [
+          "id",
+          "receiverDocument",
+          "senderDocument",
+          "availableValue",
+          "transferredValue",
+          "dateTime"
+        ],
+        "x-examples": {
+          "example-1": {
+            "id": "1644759723879",
+            "receiverDocument": "458.363.878-77",
+            "senderDocument": "452.475.668-07",
+            "availableValue": 80,
+            "transferredValue": 20,
+            "dateTime": "2022-02-13T13:42:03.879Z"
+          }
+        }
+      }
+    },
+    "responses": {
+      "Error": {
+        "description": "Example response",
+        "content": {
+          "application/json": {
+            "schema": {
+              "type": "object",
+              "properties": {
+                "message": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "paths": {
+    "/digital-account": {
+      "post": {
+        "summary": "Create Digital Account",
+        "operationId": "post-digital-account",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DigitalAccount"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "document": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "availableValue": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "name",
+                  "document",
+                  "availableValue"
+                ],
+                "x-examples": {
+                  "example-1": {
+                    "name": "Joana Bárbara Caldeira 2",
+                    "document": "45247566807",
+                    "availableValue": 1000
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "name": "Joana Bárbara Caldeira 2",
+                    "document": "45247566807",
+                    "availableValue": 1000
+                  }
+                }
+              }
+            }
+          }
+        },
+        "description": "Create Digital Account",
+        "tags": [
+          "DigitalAccount"
+        ]
+      }
+    },
+    "/transfer": {
+      "post": {
+        "summary": "Transfer values ​​between accounts",
+        "operationId": "post-transfer",
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Transfer"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "description": "Transfer values ​​between accounts",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "description": "",
+                "type": "object",
+                "properties": {
+                  "receiverDocument": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "senderDocument": {
+                    "type": "string",
+                    "minLength": 1
+                  },
+                  "value": {
+                    "type": "number"
+                  }
+                },
+                "required": [
+                  "receiverDocument",
+                  "senderDocument",
+                  "value"
+                ],
+                "x-examples": {
+                  "example-1": {
+                    "receiverDocument": "45836387877",
+                    "senderDocument": "45247566807",
+                    "value": 20
+                  }
+                }
+              },
+              "examples": {
+                "example-1": {
+                  "value": {
+                    "receiverDocument": "45836387877",
+                    "senderDocument": "45247566807",
+                    "value": 20
+                  }
+                }
+              }
+            }
+          }
+        },
+        "tags": [
+          "Transfer"
+        ]
+      }
+    },
+    "/transfer/history/{document}": {
+      "get": {
+        "summary": "Show history transfers",
+        "tags": [
+          "Transfer"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "$ref": "#/components/schemas/Transfer"
+                  }
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/Error"
+          },
+          "404": {
+            "$ref": "#/components/responses/Error"
+          },
+          "500": {
+            "$ref": "#/components/responses/Error"
+          }
+        },
+        "operationId": "get-transfer-history-:document",
+        "description": "Show history transfers"
+      },
+      "parameters": [
+        {
+          "schema": {
+            "type": "string"
+          },
+          "name": "document",
+          "in": "path",
+          "required": true,
+          "description": "cpf"
+        }
+      ]
+    }
+  },
+  "tags": [
+    {
+      "name": "DigitalAccount"
+    },
+    {
+      "name": "Transfer"
     }
   ]
 }
