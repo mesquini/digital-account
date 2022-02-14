@@ -1,12 +1,21 @@
 import ICreateDigitalAccountDTO from '@modules/digital-account/dtos/ICreateDigitalAccountDTO';
+import DigitalAccount from '@modules/digital-account/infra/db/entities/DigitalAccount';
 import IDigitalAccountRepository from '@modules/digital-account/repositories/IDigitalAccountRepository';
 import AppError from '@shared/utils/AppError';
-import DigitalAccount from '../entities/DigitalAccount';
+import {
+  FakeDigitalAccount1,
+  FakeDigitalAccount2,
+} from '../utils/FakeDigitalAccount';
 
-export default class DigitalAccountRepository
+export default class FakeDigitalAccountRepository
   implements IDigitalAccountRepository
 {
   private digitalAccounts: DigitalAccount[] = [];
+
+  constructor() {
+    this.digitalAccounts.push(FakeDigitalAccount1);
+    this.digitalAccounts.push(FakeDigitalAccount2);
+  }
 
   async createAccount(data: ICreateDigitalAccountDTO): Promise<DigitalAccount> {
     try {

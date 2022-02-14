@@ -7,9 +7,9 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import log4js from 'log4js';
+import { errors } from 'celebrate';
 
 import { IDbRepository } from '@shared/repositories/IDbRepository';
-import { errors } from 'celebrate';
 import mainRoute from './routes/index';
 import healthRoutes from './routes/health';
 import error from './middlewares/error';

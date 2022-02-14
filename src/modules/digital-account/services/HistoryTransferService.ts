@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import AppError from '@shared/utils/AppError';
 import { inject, injectable } from 'tsyringe';
 import { cpf } from 'cpf-cnpj-validator';
@@ -21,9 +22,8 @@ export default class HistoryTransferService {
 
     const cpfFormated = cpf.format(document);
 
-    const digitalAccount = await this.digitalAccountRepository.getAccountByDocument(
-      cpfFormated,
-    );
+    const digitalAccount =
+      await this.digitalAccountRepository.getAccountByDocument(cpfFormated);
 
     if (!digitalAccount)
       throw new AppError(

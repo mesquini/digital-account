@@ -1,3 +1,4 @@
+import 'reflect-metadata';
 import AppError from '@shared/utils/AppError';
 import { inject, injectable } from 'tsyringe';
 import { cpf } from 'cpf-cnpj-validator';
@@ -27,9 +28,10 @@ export default class TransferValueService {
       );
 
     const receiverCpfFormated = cpf.format(data.receiverDocument);
-    const receiverDigitalAccount = await this.digitalAccountRepository.getAccountByDocument(
-      receiverCpfFormated,
-    );
+    const receiverDigitalAccount =
+      await this.digitalAccountRepository.getAccountByDocument(
+        receiverCpfFormated,
+      );
 
     if (!receiverDigitalAccount)
       throw new AppError(
@@ -37,9 +39,10 @@ export default class TransferValueService {
       );
 
     const senderCpfFormated = cpf.format(data.senderDocument);
-    const senderDigitalAccount = await this.digitalAccountRepository.getAccountByDocument(
-      senderCpfFormated,
-    );
+    const senderDigitalAccount =
+      await this.digitalAccountRepository.getAccountByDocument(
+        senderCpfFormated,
+      );
 
     if (!senderDigitalAccount)
       throw new AppError(
