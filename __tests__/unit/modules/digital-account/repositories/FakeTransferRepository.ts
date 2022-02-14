@@ -3,13 +3,17 @@ import ITransferValueDTO from '@modules/digital-account/dtos/ITransferValueDTO';
 import Transfer from '@modules/digital-account/infra/db/entities/Transfer';
 import ITransferRepository from '@modules/digital-account/repositories/ITransferRepository';
 import AppError from '@shared/utils/AppError';
-import { FakeTransferValue1 } from '../utils/FakeTransferValue';
+import {
+  FakeTransferValue1,
+  FakeTransferValue2,
+} from '../utils/FakeTransferValue';
 
 export default class FakeTransferRepository implements ITransferRepository {
   private transfers: Transfer[] = [];
 
   constructor() {
     this.transfers.push(FakeTransferValue1);
+    this.transfers.push(FakeTransferValue2);
   }
 
   async create({

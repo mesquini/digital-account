@@ -5,6 +5,7 @@ import AppError from '@shared/utils/AppError';
 import {
   FakeDigitalAccount1,
   FakeDigitalAccount2,
+  FakeDigitalAccount3,
 } from '../utils/FakeDigitalAccount';
 
 export default class FakeDigitalAccountRepository
@@ -15,6 +16,7 @@ export default class FakeDigitalAccountRepository
   constructor() {
     this.digitalAccounts.push(FakeDigitalAccount1);
     this.digitalAccounts.push(FakeDigitalAccount2);
+    this.digitalAccounts.push(FakeDigitalAccount3);
   }
 
   async createAccount(data: ICreateDigitalAccountDTO): Promise<DigitalAccount> {

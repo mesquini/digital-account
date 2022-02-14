@@ -3,8 +3,15 @@ import AppError from '@shared/utils/AppError';
 import { cpf } from 'cpf-cnpj-validator';
 import FakeDigitalAccountRepository from '../repositories/FakeDigitalAccountRepository';
 import FakeTransferRepository from '../repositories/FakeTransferRepository';
-import { FakeDigitalAccount1 } from '../utils/FakeDigitalAccount';
-import { FakeTransferValue1 } from '../utils/FakeTransferValue';
+import {
+  FakeDigitalAccount1,
+  FakeDigitalAccount2,
+  FakeDigitalAccount3,
+} from '../utils/FakeDigitalAccount';
+import {
+  FakeTransferValue1,
+  FakeTransferValue2,
+} from '../utils/FakeTransferValue';
 
 let fakeDigitalAccountRepository: FakeDigitalAccountRepository;
 let fakeTransferRepository: FakeTransferRepository;
@@ -21,13 +28,16 @@ describe('HistoryTransferService', () => {
     );
   });
 
-  it('Should show history transfers by document', async done => {
+  it('Should show history transfers by sender document', async done => {
     const historyTransfer = await historyTransferService.run(
       FakeDigitalAccount1.document,
     );
 
     expect(historyTransfer).toBeDefined();
-    expect(historyTransfer).toMatchObject([FakeTransferValue1]);
+    expect(historyTransfer).toMatchObject([
+      FakeTransferValue1,
+      FakeTransferValue2,
+    ]);
     done();
   });
 

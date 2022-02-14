@@ -24,6 +24,14 @@
 
 ## :page_with_curl: Introdução
 
+| Method   | Endpoint                                            | Description                                                                            |
+| -------- | --------------------------------------------------- | -------------------------------------------------------------------------------------- |
+| **GET**  | /health                                       | Informações sobre API Health e versão.                                         |
+| **POST** | /digital-account                                     | Cria uma conta digital                                           |
+| **POST** | /transfer                    | Faz transferencia entre duas contas |
+| **GET** | /transfer/history/{document}                      |    Mostra todo historico de transações de uma conta  |                                                         |
+| **GET**  | /swagger                                            | Mostra informações do swagger                  |
+
   Esse projeto foi desenvolvido aplicando Clean Code e SOLID.
 
 - [Celebrate](https://www.npmjs.com/package/celebrate)/[JOI](https://www.npmjs.com/package/joi): validação da entrada de dados nas rotas;
@@ -65,19 +73,19 @@ Rodando o proejto:
 - Instala todos os pacotes via YARN:
 
   ```sh
-  yarn
+  npm i
   ```
 
 - Dev mode:
 
   ```sh
-  yarn dev
+  npm run dev
   ```
 
 - Build mode:
 
   ```sh
-  yarn build
+  npm run build
   ```
 
 ## :information_source: Recomendações

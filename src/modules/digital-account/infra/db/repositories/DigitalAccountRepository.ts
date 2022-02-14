@@ -9,54 +9,30 @@ export default class DigitalAccountRepository
   private digitalAccounts: DigitalAccount[] = [];
 
   async createAccount(data: ICreateDigitalAccountDTO): Promise<DigitalAccount> {
-    try {
-      const digitalAccount = {
-        id: new Date().getTime().toString(),
-        ...data,
-      };
+    const digitalAccount = {
+      id: new Date().getTime().toString(),
+      ...data,
+    };
 
-      this.digitalAccounts.push(digitalAccount);
+    this.digitalAccounts.push(digitalAccount);
 
-      return digitalAccount;
-    } catch (error: any) {
-      throw new AppError(error.message);
-    }
+    return digitalAccount;
   }
 
   async updateAccount(data: DigitalAccount): Promise<DigitalAccount> {
-    try {
-      this.digitalAccounts.map(digitalAccount => {
-        if (digitalAccount.id === data.id) return data;
-        return digitalAccount;
-      });
+    this.digitalAccounts.map(digitalAccount => {
+      if (digitalAccount.id === data.id) return data;
+      return digitalAccount;
+    });
 
-      return data;
-    } catch (error: any) {
-      throw new AppError(error.message);
-    }
-  }
-
-  async getAccountById(id: string): Promise<DigitalAccount | null> {
-    try {
-      const findDigitalAccount = this.digitalAccounts.find(
-        digitalAccount => digitalAccount.id === id,
-      );
-
-      return findDigitalAccount || null;
-    } catch (error: any) {
-      throw new AppError(error.message);
-    }
+    return data;
   }
 
   async getAccountByDocument(document: string): Promise<DigitalAccount | null> {
-    try {
-      const findDigitalAccount = this.digitalAccounts.find(
-        digitalAccount => digitalAccount.document === document,
-      );
+    const findDigitalAccount = this.digitalAccounts.find(
+      digitalAccount => digitalAccount.document === document,
+    );
 
-      return findDigitalAccount || null;
-    } catch (error: any) {
-      throw new AppError(error.message);
-    }
+    return findDigitalAccount || null;
   }
 }

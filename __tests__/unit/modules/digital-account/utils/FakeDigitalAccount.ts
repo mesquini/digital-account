@@ -14,3 +14,10 @@ export const FakeDigitalAccount2: DigitalAccount = {
   document: '458.363.878-77',
   availableValue: 1000,
 };
+
+export const FakeDigitalAccount3: DigitalAccount = {
+  id: '1234',
+  name: 'Naruto Uzumaki',
+  document: '310.290.430-00',
+  availableValue: 500,
+};

@@ -13,34 +13,26 @@ export default class TransferRepository implements ITransferRepository {
     availableValue,
     transferredValue,
   }: ICreateTransferValueDTO): Promise<Transfer> {
-    try {
-      const transfer = {
-        id: new Date().getTime().toString(),
-        receiverDocument,
-        senderDocument,
-        availableValue,
-        transferredValue,
-        dateTime: new Date(),
-      };
+    const transfer = {
+      id: new Date().getTime().toString(),
+      receiverDocument,
+      senderDocument,
+      availableValue,
+      transferredValue,
+      dateTime: new Date(),
+    };
 
-      this.transfers.push(transfer);
+    this.transfers.push(transfer);
 
-      return transfer;
-    } catch (error: any) {
-      throw new AppError(error.message);
-    }
+    return transfer;
   }
 
   async getByDocument(document: string): Promise<Transfer[]> {
-    try {
-      return this.transfers.filter(
-        transfer =>
-          transfer.senderDocument === document ||
-          transfer.receiverDocument === document,
-      );
-    } catch (error: any) {
-      throw new AppError(error.message);
-    }
+    return this.transfers.filter(
+      transfer =>
+        transfer.senderDocument === document ||
+        transfer.receiverDocument === document,
+    );
   }
 
   async findByTransferValue({
@@ -48,17 +40,13 @@ export default class TransferRepository implements ITransferRepository {
     senderDocument,
     transferredValue,
   }: ITransferValueDTO): Promise<Transfer | null> {
-    try {
-      const findTransfer = this.transfers.find(
-        transfer =>
-          transfer.receiverDocument === receiverDocument &&
-          transfer.senderDocument === senderDocument &&
-          transfer.transferredValue === transferredValue,
-      );
+    const findTransfer = this.transfers.find(
+      transfer =>
+        transfer.receiverDocument === receiverDocument &&
+        transfer.senderDocument === senderDocument &&
+        transfer.transferredValue === transferredValue,
+    );
 
-      return findTransfer || null;
-    } catch (error: any) {
-      throw new AppError(error.message);
-    }
+    return findTransfer || null;
   }
 }
